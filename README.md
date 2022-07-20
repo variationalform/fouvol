@@ -63,9 +63,21 @@ You can always tidy up with this...
 ```bash
 rm -rf compare_?.sh compare.sh errortable.* *pyc results/ runout.txt timestable.* *.eps *.png
 ```
-This wont delete important files, but  will get rid of everything that can be re-generated with other runs.
+This wont delete important files, but will get rid of everything that can be re-generated with other runs.
 
 ## Git management
+
+Install, with an update first. For example, with Linux Mint:
+```bash
+sudo apt-get update
+sudo apt install git
+git config --global user.name "Your Name"
+git config --global user.email your@email
+git config --global core.editor vi
+git config --global color.ui auto
+git config --list
+git --version
+```
 
 As usual, if you make changes, document them and then push as usual. For example,
 
