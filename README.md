@@ -53,8 +53,8 @@ to get a stripped-down set of the results in the paper. The full set of results 
 ```bash
 # JARGS="-J 5 16"
 # LARGS="-L 3 11"
-JARGS="-J 5 6"
-LARGS="-L 3 4"
+JARGS="-J 5 7"
+LARGS="-L 3 7"
 ```
 Beware though - with `16` and `11` determing the max number of time steps and Fourier components, it will take a while to run...
 

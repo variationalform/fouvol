@@ -29,8 +29,8 @@ rm -f compare.sh
 
 # JARGS="-J 5 16"
 # LARGS="-L 3 11"
-JARGS="-J 5 6"
-LARGS="-L 3 4"
+JARGS="-J 5 7"
+LARGS="-L 3 7"
 
 TARG=" -T 10"
 # NOTE: compare wont work without the basic s1 solve
