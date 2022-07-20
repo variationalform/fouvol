@@ -11,6 +11,7 @@ The codes are in python, with a bash script used to manage the batch solution. T
 
 ```bash
 git clone https://github.com/variationalform/fouvol.git
+#git clone git@github.com:variationalform/fouvol.git
 cd fouvol
 ./fouvol.py -h
 ./fouvol.py -v 0 -s 3 -a -0.5 -m 5 -T 10 --T1 0.5 -L 16 --Nt 500 -P
@@ -69,5 +70,18 @@ This wont delete important files, but  will get rid of everything that can be re
 As usual, if you make changes, document them and then push as usual. For example,
 
 ```bash
+git add *
+git add .gitignore 
+git status
+git commit -m 'Initial commit of working code and explanatory README.md'
+git push
+```
+The push failed because the clone was made with `https`.
 
+```bash
+Pasted ~/.ssh/id_rsa.pub into Git hub web page
+can't use http anymore - as in the clone above, so
+ssh -T git@github.com
+git remote -v
+git remote set-url origin git@github.com:variationalform/fouvol.git
 ```
