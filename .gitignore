@@ -1,3 +1,14 @@
+# ignore everything
+*
+# except these specifics
+!fouvol.py
+!fouker.py
+!plotter.py
+!compare.py
+!README.md
+!bigrun.sh
+!shortrun.sh
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
