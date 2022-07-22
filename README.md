@@ -89,6 +89,7 @@ git commit -m 'Initial commit of working code and explanatory README.md'
 git push
 git pull
 git diff --staged
+git fetch origin && git diff main origin/main # or master
 # etc etc
 ```
 The push failed because the clone was made with `https`.
