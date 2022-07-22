@@ -1,5 +1,18 @@
 #! /usr/bin/python
 
+"""
+Plot results stemming from the running of fouvol.py. See for example,
+https://github.com/variationalform/fouvol
+
+Copyright (c) 2020, Simon Shaw
+(https://github.com/variationalform, https://www.brunel.ac.uk/people/simon-shaw).
+The moral right of the author has been asserted.
+
+These codes are free software; you can redistribute them and/or
+modify them under the terms of the GNU General Public License Version 3 - the terms
+of which should accompany this source code.
+"""
+
 # sudo apt-get install python-tk
 # sudo apt-get install python-matplotlib
 # sudo apt-get install python-scipy
@@ -17,16 +30,16 @@ Lmin = int(commands.getoutput("head -3 errortable.raw | tail -1 | tr '&' ';' | t
 # this controls whether L doubles or quadruples etc in the legends
 DL=2  # a change here must be mirrored in bigrun.sh, compare.py
 
-# http://www.folkstalk.com/2013/03/sed-remove-lines-file-unix-examples.html
+# Ref: http://www.folkstalk.com/2013/03/sed-remove-lines-file-unix-examples.html
 os.system("cat errortable.raw | sed '1,3d' | sed '$d' | tr '&' ' ' | sed 's/\\\\//g' > errortable.dat")
 os.system("cat timestable.raw | sed '1,3d' | sed '$d' | tr '&' ' ' | sed 's/\\\\//g' > timestable.dat")
 
-#https://python4astronomers.github.io/files/asciifiles.html
+# Ref: https://python4astronomers.github.io/files/asciifiles.html
 # Open files, assume they have the same structure
 fe = open('errortable.dat', 'r')
 ft = open('timestable.dat', 'r')
 Nc = len(fe.readline().split())
-# count the remaining lines
+# count the remaining lines -  there's probably a better way to this but I am in a hurry!
 Nl=1;
 for line in fe:
   Nl = Nl+1
@@ -54,10 +67,9 @@ fe.close()
 ft.close()
 # this causes log(0) errors, and also variatons across runs
 #xlo=0; xhi=int(1.2*max(errvals[:,0]));
-xlo=1; xhi=1000000;
+xlo=1; xhi=1000000; # non-zeros are saferfor log plots
 
-#https://stackoverflow.com/questions/13091649/unique-plot-marker-for-each-plot-in-matplotlib
-#marker = itertools.cycle((',', '+', '.', 'o', '*')) 
+# Ref: https://stackoverflow.com/questions/13091649/unique-plot-marker-for-each-plot-in-matplotlib
 marker = itertools.cycle(( '+','s','o','*','v','^','<','>','x','D','d','.'))
 # set up the error plot
 plt.rc('text', usetex=True)
@@ -82,7 +94,7 @@ plt.ylim(0.000000000001,10.0)
 plt.title(r'errors at time $T$',fontsize=25)
 plt.tight_layout()
 plt.savefig('errors.png', format='png', dpi=750)
-#plt.savefig('errors.jpg', format='jpg')
+#plt.savefig('errors.jpg', format='jpg')  # jpg creation creates errors for me on some machines.
 plt.savefig('errors.eps', format='eps', dpi=1000)
 plt.grid(True)
 plt.clf()

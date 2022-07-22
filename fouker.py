@@ -1,7 +1,16 @@
 #!/usr/bin/python
 
 """
+Called by fouvol.py. See for example,
+https://github.com/variationalform/fouvol
 
+Copyright (c) 2020, Simon Shaw
+(https://github.com/variationalform, https://www.brunel.ac.uk/people/simon-shaw).
+The moral right of the author has been asserted.
+
+These codes are free software; you can redistribute them and/or
+modify them under the terms of the GNU General Public License Version 3 - the terms
+of which should accompany this source code.
 """
 
 from scipy.integrate import quad

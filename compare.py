@@ -1,4 +1,18 @@
 #! /usr/bin/python
+
+"""
+Used to compare results stemming from the running of fouvol.py. See for example,
+https://github.com/variationalform/fouvol
+
+Copyright (c) 2020, Simon Shaw
+(https://github.com/variationalform, https://www.brunel.ac.uk/people/simon-shaw).
+The moral right of the author has been asserted.
+
+These codes are free software; you can redistribute them and/or
+modify them under the terms of the GNU General Public License Version 3 - the terms
+of which should accompany this source code.
+"""
+
 # https://matplotlib.org/1.4.1/api/markers_api.html
 # sudo apt-get install python-tk
 # sudo apt-get install python-matplotlib
@@ -156,7 +170,6 @@ print 'captured data in', comparison
 print '...'
 
 # plot the time-error curves
-#marker = itertools.cycle((',', '+', '.', 'o', '*')) # ,'x','v','^','<','>','D','d'
 marker = itertools.cycle(( '+','s','o','*','v','^','<','>','x','D','d','.'))
 # set up the error plot
 plt.rc('text', usetex=True)

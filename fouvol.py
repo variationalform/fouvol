@@ -1,13 +1,16 @@
 #!/usr/bin/python
 
-"""
-NOTE: 27 March 2018:
-- first backup is all OK -prior to the -varphi0 change
-- #--# comment used to implement the -varphi0 sign change
-- second back up has the change implemented. All seemed well on s1, s2, s3 s4 solver test cases
-- third back up: bigrun.sh now dumps results in ./resulst to avoid overwriting 'final' versions
-- fourth back up - all superfluous comments removed
 
+"""
+fouvol.py. See for example, https://github.com/variationalform/fouvol
+
+Copyright (c) 2020, Simon Shaw
+(https://github.com/variationalform, https://www.brunel.ac.uk/people/simon-shaw).
+The moral right of the author has been asserted.
+
+These codes are free software; you can redistribute them and/or
+modify them under the terms of the GNU General Public License Version 3 - the terms
+of which should accompany this source code.
 """
 
 import os, sys, getopt, time, math
@@ -144,7 +147,7 @@ for o, a in opts:
 # sanity checks
 dt = T/Nt
 N1=int(math.ceil(T1/dt))
-# crude hack to bget into bigrun.sh tables
+# crude hack to get into bigrun.sh tables
 #os.system('echo '+N1+' > N1_value.txt')
 T1 = N1*dt
 Tx = T + T1

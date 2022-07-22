@@ -1,6 +1,21 @@
 #!/bin/bash    
 
-# ./shortrun.sh && ./compare.sh
+# """
+# Coordinate the running of bigrun.sh for fouvol.py in a bash shell. See for example,
+# https://github.com/variationalform/fouvol
+# 
+# Copyright (c) 2020, Simon Shaw
+# (https://github.com/variationalform, https://www.brunel.ac.uk/people/simon-shaw).
+# The moral right of the author has been asserted.
+# 
+# These codes are free software; you can redistribute them and/or
+# modify them under the terms of the GNU General Public License Version 3 - the terms
+# of which should accompany this source code.
+# """
+
+# THEN=`date`
+# ./shortrun.sh | tee shortrun.out && ./compare.sh  | tee -a shortrun.out 
+# echo $THEN && date
 
 # BUG: -v 0 is necessary (why?) other values cause problems
 

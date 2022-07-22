@@ -1,33 +1,21 @@
 #!/bin/bash    
 
-# New runs, April 2022
-# Dell Mint...
+# """
+# Coordinate the running of fouvol.py in a bash shell. See for example,
+# https://github.com/variationalform/fouvol
+# 
+# Copyright (c) 2020, Simon Shaw
+# (https://github.com/variationalform, https://www.brunel.ac.uk/people/simon-shaw).
+# The moral right of the author has been asserted.
+# 
+# These codes are free software; you can redistribute them and/or
+# modify them under the terms of the GNU General Public License Version 3 - the terms
+# of which should accompany this source code.
+# """
+
+# Examples...
 # sudo apt-get install python-numpy python-matplotlib python-scipy dvipng
 # time ./bigrun.sh -A "-v 0 -s 2 -a -0.5 -T 10 "  -J 8 17  -L 0 0 -C | tee -a runout.txt
-
-if [ 1 -eq 0 ]; then
-  #
-  # useful commands
-  #
-
-  at now + 2 hours ... CNTRL D
-
-  # run this command!
-  chmod u+x ./bigrun.sh
-  time ./bigrun.sh -J 3 -L 3 | tee runout.txt
-  time ./bigrun.sh -J 13 -L 8 | tee runout.txt
-  time ./bigrun.sh -J 18 -L 5 | tee runout.txt
-  time ./bigrun.sh -J 16 -L 6 | tee runout.txt
-   
-#  ulimit -c 0 ; time ./bigrun.sh |& tee output.txt
-  
-  diff ./bigrun.sh     ~/data/Dropbox/AccessAndShare/fenics_dg/bigrun.sh ;
-  #
-  # BEWARE - make sure to copy in the RIGHT direction!
-  #
-  cp   ./bigrun.sh     ~/data/Dropbox/AccessAndShare/fenics_dg/bigrun.sh ; 
-
-fi
 
 # prevent formation of core file (takes ages), doesn't seem to work!
 ulimit -c 0 # maybe do this in docker
