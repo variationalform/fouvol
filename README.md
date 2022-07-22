@@ -113,7 +113,7 @@ git commit -m 'Initial commit of working code and explanatory README.md'
 git push
 git pull
 git diff --staged
-git fetch origin && git diff main origin/main # or master
+git fetch origin && git diff --name-only main origin/main # or master
 # etc etc
 ```
 The push may fail if the clone was made with `https`. If so,
