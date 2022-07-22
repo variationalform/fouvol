@@ -87,6 +87,9 @@ git add .gitignore
 git status
 git commit -m 'Initial commit of working code and explanatory README.md'
 git push
+git pull
+git diff --staged
+# etc etc
 ```
 The push failed because the clone was made with `https`.
 
