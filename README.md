@@ -125,3 +125,4 @@ ssh -T git@github.com
 git remote -v
 git remote set-url origin git@github.com:variationalform/fouvol.git
 ```
+REF: <https://stackoverflow.com/questions/17659206/git-push-results-in-authentication-failed>
