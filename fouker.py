@@ -17,6 +17,13 @@ from scipy.integrate import quad
 import scipy
 import os, sys, getopt, time, math
 import numpy as np
+# docker has no $DISPLAY so use fix it using this source:
+# from https://stackoverflow.com/questions/37604289/tkinter-tclerror-no-display-name-and-no-display-environment-variable 
+# this must come before any other matplotlib imports
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
 import matplotlib.pyplot as plt
 import itertools
 

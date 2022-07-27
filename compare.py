@@ -19,9 +19,16 @@ of which should accompany this source code.
 # sudo apt-get install python-scipy
 
 import numpy as np
-import matplotlib.pyplot as plt
 import scipy.signal
 import os, sys, getopt, time, math
+# docker has no $DISPLAY so use fix it using this source:
+# from https://stackoverflow.com/questions/37604289/tkinter-tclerror-no-display-name-and-no-display-environment-variable 
+# this must come before any other matplotlib imports
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
+import matplotlib.pyplot as plt
 import itertools
 import commands
 

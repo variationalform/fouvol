@@ -126,3 +126,162 @@ git remote -v
 git remote set-url origin git@github.com:variationalform/fouvol.git
 ```
 REF: <https://stackoverflow.com/questions/17659206/git-push-results-in-authentication-failed>
+
+## Running with `docker`
+
+The short form of the results can also be obtained with `docker`. Do this in a directory you want to share as follows
+
+```bash
+newgrp docker # you may not need this
+docker pull variationalform/puretime:fouvol
+cd shared_directory
+docker run -ti --name fouvol -v "$PWD":/home/shared -w \
+       /home/fouvol variationalform/puretime:fouvol
+# and then execute at the bash prompt any or all of these
+source ~/.bashrc
+
+THEN=`date`
+./shortrun.sh | tee shortrun.out && ./compare.sh  | tee -a shortrun.out 
+echo $THEN && date
+
+rm -rf compare_?.sh compare.sh errortable.* *pyc results/ runout.txt timestable.* *.eps *.png *.txt *.out
+
+```
+
+You `CNTRL-D` to exit. You may also need `chown -R OWNER:GROUP outfile` on any files
+`outfile` produced and copied to the  shared folder.
+
+To go again, 
+
+```bash
+docker ps --filter "status=exited"
+docker start fouvol
+docker restart fouvol
+docker image ls
+docker attach fouvol
+source ~/.bashrc
+CNTRL-D to exit
+```
+
+If you have issues with the docker daemon or group, try these:
+
+```bash
+daemon and group problems
+ sudo systemctl start docker
+reboot
+sudo usermod -a -G docker [user]
+
+grep docker /etc/group
+newgrp docker
+
+
+  602  more .ssh/id_ed25519.pub 
+  603  ssh icsrsss@ssh.brunel.ac.uk
+  604  docker
+  605  sudo apt install docker.io
+  606  docker ps
+  607  grep docker /etc/group
+  608  newgrp docker
+  609  history 
+  610  history | tail
+  611  history | tail > docker.out
+```
+
+For interest's sake, the docker image was created with the following steps.
+
+```bash
+# cd to the directory with the source in it...
+# create an image  with this shared directory, pulls if not found locally
+docker run -ti --name fouvol -v "$PWD":/home/shared -w /home/fouvol ubuntu
+```
+This will get you to a `bash` prompt in the image. Here...
+
+```bash
+apt-get update
+apt-get install python2
+apt-get install vim
+vi ~/.bashrc 
+# and at the bottom type alias python='/usr/bin/python2' and save it
+source ~/.bashrc 
+# beware that .bashrc wont get read by the login shell.
+apt-get install python-pip
+pip2 install numpy
+pip2 install matplotlib
+apt-get install python-tk
+pip2 install scipy
+```
+Now copy over the files from  the share to the image working directory:
+
+```bash
+cp ../shared/*.py .
+cp ../shared/*.sh .
+# create a symlink so 'python' (and not 'python2') works in the scripts   
+ln -s /usr/bin/python2 /usr/bin/python 
+```
+
+Now, `docker` wont have a `$DISPLAY` variable, and so this fix,
+from <https://stackoverflow.com/questions/37604289/tkinter-tclerror-no-display-name-and-no-display-environment-variable>, was introduced into the `python` sources
+
+
+```bash
+ import os
+# this must come before any other matplotlib imports
+import matplotlib as mpl
+if os.environ.get('DISPLAY','') == '':
+    print('no display found. Using non-interactive Agg backend')
+    mpl.use('Agg')
+import matplotlib.pyplot as plt
+```
+
+LaTeX is used in `matplotlib` and so we needed this as well,
+
+```bash
+apt-get install texlive
+apt-get install dvipng texlive-latex-extra texlive-fonts-recommended 
+
+```
+this has meant the image is much bigger than it needs to be (is there a workaround?)  
+
+Now put these echo'ed commands at bottom of `~/.bashrc` as a quick reminder of what to do.
+
+```bash
+Quickstart Commands:
+ rm -rf compare_?.sh compare.sh errortable.* *pyc results/ runout.txt timestable.* *.eps *.png *.txt *.out
+ ./shortrun.sh | tee shortrun.out && ./compare.sh  | tee -a shortrun.out
+```
+and remember to type `source ~/.bashrc` to see them.
+
+Thetag was created on <https://hub.docker.com/repository/docker/variationalform/puretime> with the following:
+
+```bash
+# get the tag
+docker ps --filter "status-exited"
+# commit it
+docker commit 19d1e9956cbd
+# gives
+sha256:c8ff6b020b5ca02cb686ba19fbd9613f4ae8cf7e9204a0f4d657fb284707decf
+# Then
+docker login
+docker tag c8ff6b020 variationalform/puretime:fouvol
+docker push variationalform/puretime:fouvol
+```
+
+Now a downloader can execute and run as explained at the top of this section
+
+Alternatively, once the tar file, made like this,
+
+```bash
+docker save c8ff6b020 > fouvol_docker_c8ff.tar
+docker load < fouvol_docker_c8ff.tar
+```
+
+is available,
+
+```bash
+docker run -ti c8ff
+```
+
+**_*TO DO:*_** update <https://hub.docker.com/repository/docker/variationalform/puretime> with the paper's DOI
+
+**_*TO DO:*_** make the tarfile available (figshare?)
+
