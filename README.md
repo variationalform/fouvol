@@ -13,14 +13,17 @@ modify them under the terms of the GNU General Public License Version 3 - the te
 
 This set of codes can be used to reproduce the results in the paper
 
->Approximate Fourier series recursion for problems
-involving temporal fractional calculus
-Simon Shaw and John R Whiteman
+>*Approximate Fourier series recursion for problems
+involving temporal fractional calculus*
+
+>By: Simon Shaw and John R Whiteman
 Brunel University London, 2022
 
-To Appear in CMAME - **Computer Methods in Applied Mechanics and Engineering**
+Published in CMAME - **Computer Methods in Applied Mechanics and Engineering**
 
-**_*TO DO:*_** Give DOI and link once the paper is in print.
+><https://doi.org/10.1016/j.cma.2022.115537>
+><https://www.sciencedirect.com/science/article/pii/S0045782522005321?via%3Dihub>
+>**_*TO DO:*_** Give volume number/year etc once the paper is in print.
 
 The codes are in python  (with `python 2.7.17` used, as explained in the paper), with a bash script used to manage the batch solution. These scripts live in a folder called `fouvol`. To obtain this folder, `cd` to the directory you want to parent it and type...
 
@@ -32,9 +35,7 @@ cd fouvol
 ./fouvol.py -v 0 -s 3 -a -0.5 -m 5 -T 10 --T1 0.5 -L 16 --Nt 500 -P
 ```
 
-This should produce the  help page first, and then in the second command, `png` and `eps` versions of the graphics entitled `varphirep` and  `varphirepextended`. These correspond to the two Figures in Section 1 of the paper. All code corresponding to the creation and storing of `jpg` graphics has been commented out.
-
-**_*TO DO:*_** Update with Figure numbers once the paper is in print.
+This should produce the  help page first, and then in the second command, `png` and `eps` versions of the graphics entitled `varphirep` and  `varphirepextended`. These correspond to the Figures 1 and 2 in Section 1 of the paper. All code corresponding to the creation and storing of `jpg` graphics has been commented out.
 
 Note that LaTeX is used as a `matplotlib` interpreter - if you  don't have LaTeX on the host machine you'll need to go through and comment/alter those lines. 
 
@@ -151,7 +152,7 @@ rm -rf compare_?.sh compare.sh errortable.* *pyc results/ runout.txt timestable.
 You `CNTRL-D` to exit. You may also need `chown -R OWNER:GROUP outfile` on any files
 `outfile` produced and copied to the  shared folder.
 
-To go again, 
+If you exited and then want to re-attach and run again, 
 
 ```bash
 docker ps --filter "status=exited"
@@ -166,25 +167,13 @@ CNTRL-D to exit
 If you have issues with the docker daemon or group, try these:
 
 ```bash
-daemon and group problems
+# daemon and group problems
  sudo systemctl start docker
 reboot
 sudo usermod -a -G docker [user]
 
 grep docker /etc/group
 newgrp docker
-
-
-  602  more .ssh/id_ed25519.pub 
-  603  ssh icsrsss@ssh.brunel.ac.uk
-  604  docker
-  605  sudo apt install docker.io
-  606  docker ps
-  607  grep docker /etc/group
-  608  newgrp docker
-  609  history 
-  610  history | tail
-  611  history | tail > docker.out
 ```
 
 For interest's sake, the docker image was created with the following steps.
@@ -224,7 +213,7 @@ from <https://stackoverflow.com/questions/37604289/tkinter-tclerror-no-display-n
 
 
 ```bash
- import os
+import os
 # this must come before any other matplotlib imports
 import matplotlib as mpl
 if os.environ.get('DISPLAY','') == '':
@@ -251,11 +240,11 @@ Quickstart Commands:
 ```
 and remember to type `source ~/.bashrc` to see them.
 
-Thetag was created on <https://hub.docker.com/repository/docker/variationalform/puretime> with the following:
+The tag was created on <https://hub.docker.com/repository/docker/variationalform/puretime> with the following:
 
 ```bash
 # get the tag
-docker ps --filter "status-exited"
+docker ps --filter "status=exited"
 # commit it
 docker commit 19d1e9956cbd
 # gives
@@ -272,12 +261,12 @@ Alternatively, once the tar file, made like this,
 
 ```bash
 docker save c8ff6b020 > fouvol_docker_c8ff.tar
-docker load < fouvol_docker_c8ff.tar
 ```
 
 is available,
 
 ```bash
+docker load < fouvol_docker_c8ff.tar
 docker run -ti c8ff
 ```
 
