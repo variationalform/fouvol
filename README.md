@@ -21,9 +21,9 @@ Brunel University London, 2022
 
 Published in CMAME - **Computer Methods in Applied Mechanics and Engineering**
 
-><https://doi.org/10.1016/j.cma.2022.115537>
-><https://www.sciencedirect.com/science/article/pii/S0045782522005321?via%3Dihub>
->**_*TO DO:*_** Give volume number/year etc once the paper is in print.
+- <https://doi.org/10.1016/j.cma.2022.115537>
+- <https://www.sciencedirect.com/science/article/pii/S0045782522005321?via%3Dihub>
+- **_*TO DO:*_** Give volume number/year etc once the paper is in print.
 
 The codes are in python  (with `python 2.7.17` used, as explained in the paper), with a bash script used to manage the batch solution. These scripts live in a folder called `fouvol`. To obtain this folder, `cd` to the directory you want to parent it and type...
 
